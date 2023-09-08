@@ -1,3 +1,9 @@
+/*
+Create a random array of n integers. Sort the array using bubble sort. Accept a value x
+from user and use binary search algorithm to check whether the number is present in array
+or not and output the position if the number is present.
+
+*/
 #include<stdlib.h>
 #include<stdio.h>
 
