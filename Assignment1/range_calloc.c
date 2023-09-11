@@ -14,6 +14,12 @@ int main()
     printf("Enter value of n: \n");
     scanf("%d", &n);
     int *ptr = (int *)calloc(n, sizeof(int));
+ 
+   if (ptr == NULL)
+   {
+    printf("Memory allocation failed\n");
+    exit(1);
+   }
     printf("Enter Integers:\n ");
     for (i = 0; i < n; i++)
     {
