@@ -6,9 +6,8 @@ using dynamic memory allocation). Calculate the sum and average of non-zero elem
 
 int main()
 {
-    int n, i, j, sum = 0, count = 0;
-    ;
-    int *arr, *copy;
+    int n, i, sum = 0, count = 0;
+    int *arr;
     double avg;
     printf("Enter size of array: ");
     scanf("%d", &n);
@@ -37,38 +36,29 @@ int main()
     {
         if (*(arr + i) != 0)
         {
+            *(arr+count)=*(arr+i);
             count++;
         }
     }
 
-    copy = (int *)malloc(count * sizeof(int));
-    if (copy == NULL)
+    arr= (int *)realloc(arr,count * sizeof(int));
+    if (arr == NULL)
     {
         printf("Memory allocation failed for copy\n");
-        free(arr);
         return -1;
     }
 
-    j = 0;
-    for (i = 0; i < n; i++)
-    {
-        if (*(arr + i) != 0)
-        {
-            *(copy + j) = *(arr + i);
-            j++;
-        }
-    }
 
-    printf("The copy array is: ");
+    printf("The array is: ");
     for (i = 0; i < count; i++)
     {
-        printf("%d ", *(copy + i));
+        printf("%d ", *(arr + i));
     }
     printf("\n");
 
     for (i = 0; i < count; i++)
     {
-        sum += *(copy + i);
+        sum += *(arr + i);
     }
 
     avg = (double)sum / count;
@@ -77,7 +67,6 @@ int main()
     printf("The average of non-zero elements is: %.2f\n", avg);
 
     free(arr);
-    free(copy);
 
     return 0;
 }
