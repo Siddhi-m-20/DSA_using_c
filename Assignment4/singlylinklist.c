@@ -34,7 +34,7 @@ void main()
         case 1:
             do
             {
-                printf("\n1.Insert at the begining\n2.Insert at the specified position\n3.Insert at the last position.");
+                printf("\n1.Insert at the begining\n2.Insert at the specified position\n3.Insert at the last position.\n");
                 scanf("%d", &opt);
                 switch (opt)
                 {
@@ -61,7 +61,7 @@ void main()
         case 2:
             do
             {
-                printf("\n1.Delete from the begining\n2.Delete from the specified position\n3.Delete from the last.\n");
+                printf("\n1.Delete from the begining\n2.Delete the specific data\n3.Delete from the last.\n");
                 scanf("%d", &opt);
                 switch (opt)
                 {
@@ -69,9 +69,9 @@ void main()
                     head = begin_delete(head);
                     break;
                 case 2:
-                    printf("Enter position of node after which you want to delete the node:");
-                    scanf("%d", &pos);
-                    random_delete(&head, pos);
+                    printf("\nEnter the data which you want to delete:\n");
+                    scanf("%d", &data);
+                    random_delete(&head, data);
                     break;
                 case 3:
                     last_delete(head);
@@ -80,13 +80,13 @@ void main()
             } while (opt != 4);
             break;
         case 3:
-            printf("Enter the data to be searched: \n");
+            printf("\nEnter the data to be searched: \n");
             scanf("%d",&data);
             pos=search(head,data);
             if(pos==-1){
-                printf("Data not found in the list.");
+                printf("\nData not found in the list.");
             }else{
-            printf("%d is found at %d location in the linked list.",data,pos);
+            printf("\n%d is found at %d location in the linked list.",data,pos);
             }
             break;
         case 4:
@@ -96,7 +96,7 @@ void main()
             exit(0);
             break;
         default:
-            printf("Please enter a valid choice..\n");
+            printf("\nPlease enter a valid choice..\n");
         }
     }
 }
