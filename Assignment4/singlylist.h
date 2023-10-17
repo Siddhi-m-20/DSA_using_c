@@ -23,8 +23,7 @@ void lastinsert(struct node *head, int data);
 struct node *begin_delete(struct node *head);
 void random_delete(struct node **head, int pos);
 void last_delete(struct node *head);
-int search(struct node *head,int data);
-
+int search(struct node *head, int data);
 
 void create_list(struct node **head, int data)
 {
@@ -64,6 +63,7 @@ void display(struct node *head)
             printf("%d  ", ptr->data);
             ptr = ptr->next;
         }
+        return;
     }
 }
 
@@ -179,7 +179,7 @@ void last_delete(struct node *head)
     }
 }
 
-void random_delete(struct node **head, int pos)
+void random_delete(struct node **head, int data)
 {
     if (*head == NULL)
     {
@@ -187,35 +187,41 @@ void random_delete(struct node **head, int pos)
     }
     else
     {
-        struct node *ptr = *head, *prev = NULL;
-        int i;
-        if (pos == 1)
-        {
-            *head = ptr->next;
-            free(ptr);
-            ptr = NULL;
-            printf("\nNode Deleted\n");
-        }
-        else{
-            if (ptr == NULL)
-        {
-            printf("\nPosition %d is out of range.\n", pos);
-            return;
-        }
-        for (i = 0; i < pos && ptr != NULL; i++)
-        {
-            prev = ptr;
-            ptr = ptr->next;
-        }
+        struct node *temp = *head, *ptr = NULL;
         
-        prev->next = ptr->next;
-        free(ptr);
-        printf("\nNode deleted Successfully");
+        if (temp->data == data)  
+        {
+            *head = temp->next;  
+            free(temp);          
+            temp = NULL;
+            printf("\nNode Deleted Successfully.\n");
+        }
+        else
+        {
+            ptr = temp->next;
+            while (ptr != NULL && ptr->data != data)
+            {
+                temp = temp->next;
+                ptr = ptr->next;
+            }
+
+            if (ptr != NULL)
+            {
+                temp->next = ptr->next;
+                ptr->next = NULL;
+                free(ptr);
+                printf("\nNode deleted Successfully.\n");
+            }
+            else
+            {
+                printf("\nNode with data %d not found.\n", data);
+            }
         }
     }
 }
 
-int search(struct node *head,int data)
+
+int search(struct node *head, int data)
 {
     if (head == NULL)
     {
